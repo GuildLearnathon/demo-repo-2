@@ -1,0 +1,22 @@
+name: PR Review Slack Notify
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+  push:
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    name: PR Review Slack Notify
+    steps:
+      - name: Update PR state in Slack
+        id: pr-slack-notify
+        uses: mlg87/pr-reviewer-slack-notify-action@v4.1.4
+        with:
+          base-branch: "main"
+          bot-token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel-id: ""
+          github-token: ${{ secrets.DEVOPS_ALL_GITHUB_DEVOPS_BOT_PAT }}
+          slack-users: []
