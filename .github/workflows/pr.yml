@@ -1,0 +1,19 @@
+name: Pull Request
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  updatePrWithClubhouseDetails:
+    runs-on: ubuntu-latest
+    name: Add Clubhouse Info to PR
+    steps:
+      - name: Update PR
+        uses: blakeworsley/gh-actions-clubhouse-pr-updater@v0.0.5
+        with:
+          descriptionHeader: "### What does this pull request do?"
+          urlHeader: "### What is the relevant story?"
+          delimiter: "___"
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          CLUBHOUSE_TOKEN: ${{ secrets.CLUBHOUSE_TOKEN }}
